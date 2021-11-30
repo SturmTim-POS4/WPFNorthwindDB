@@ -1,0 +1,61 @@
+﻿<Window x:Class="WPFNorthwindDB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFNorthwindDB"
+        mc:Ignorable="d"
+        Loaded="MainWindow_OnLoaded"
+        Title="MainWindow" Height="450" Width="800">
+  <Grid>
+    <Grid.Resources>
+      <Style TargetType="TextBox">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="23"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+      </Style>
+      <Style TargetType="Label">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+      </Style>
+      <Style TargetType="Slider">
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+      </Style>
+    </Grid.Resources>
+    <Label Content="Suppliers" Margin="10,0,0,0" />
+    <Label Content="Employees" Margin="293,0,0,0" />
+    <ListBox Name="listBox" SelectionChanged="ListBox_OnSelectionChanged" HorizontalAlignment="Left" Height="330" Margin="10,26,0,0" VerticalAlignment="Top" Width="264" />
+    <ListBox Name="lstEmployees" SelectionChanged="ListBox_OnSelectionChanged" HorizontalAlignment="Left" Height="185" Margin="293,26,0,0" VerticalAlignment="Top" Width="164" />
+    <DataGrid Name="grdProducts" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="474,10,0,0" VerticalAlignment="Top" Height="399" Width="483">
+      <DataGrid.Columns>
+        <DataGridTextColumn Binding="{Binding ProductName}" Header="ProductName" />
+        <DataGridTextColumn Binding="{Binding UnitPrice}" Header="Price" />
+        <DataGridTextColumn Binding="{Binding UnitsInStock}" Header="Stock" />
+        <DataGridTextColumn Binding="{Binding Category.CategoryName}" Header="Category" />
+        <DataGridTextColumn Binding="{Binding Supplier.CompanyName}" Header="Supplier" />
+      </DataGrid.Columns>
+    </DataGrid>
+    <Label Content="Filter" Margin="10,375,0,0" />
+    <TextBox Name="txtFilter" TextChanged="TxtFilter_OnTextChanged" Margin="53,378,0,0" />
+    <Label Content="Min Stock" Margin="279,280,0,0" />
+    <Label Content="Max Price" Margin="281,348,0,0" />
+    <Slider Name="sldMaxPrice" ValueChanged="Slides_OnValueChanged" Margin="293,379,0,0" Maximum="1000"/>
+    <Label Name="lblMaxPrice" Margin="360,348,0,0" Width="44"/>
+    <Slider Name="sldMinStock" ValueChanged="Slides_OnValueChanged" Margin="293,306,0,0" Maximum="100" />
+    <Label Name="lblMinStock" Margin="360,275,0,0" Width="44"/>
+    <Button Content="Show Customers" HorizontalAlignment="Left" Margin="10,423,0,0" VerticalAlignment="Top" Width="118" />
+    <ListBox Name="lstCustomers" HorizontalAlignment="Left" Height="219" Margin="174,423,0,0" VerticalAlignment="Top" Width="354" />
+    <Label Name="lblSelectedEmployeeLastName" Content="LastName SelectedEmployee" Margin="10,453,0,0" Width="118"/>
+    <Label Name="lblSelectedEmployeeFirstName" Content="FirstName SelectedEmployee" Margin="10,483,0,0" Width="118"/>
+    <Label Content="Productname" Margin="574,425,0,0" />
+    <Label Content="New Price" Margin="574,453,0,0" />
+    <TextBox Name="txtProductName" Margin="676,428,0,0" />
+    <TextBox Name="txtNewPrice" Margin="676,457,0,0" />
+    <Button Content="Update" HorizontalAlignment="Left" Margin="819,431,0,0" VerticalAlignment="Top" Width="56" Height="47" />
+  </Grid>
+</Window>
