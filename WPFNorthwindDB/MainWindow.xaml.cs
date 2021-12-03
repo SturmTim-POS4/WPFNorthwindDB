@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using NorthwindDB;
 
@@ -46,8 +36,8 @@ namespace WPFNorthwindDB;
         {
             if (listBox.SelectedIndex != -1 && lstEmployees.SelectedIndex != -1)
             {
-                var suppliers = listBox.SelectedItems.OfType<Supplier>().First();
-                var employee = lstEmployees.SelectedItems.OfType<Employee>().First();
+                var suppliers = listBox.SelectedItem as Supplier;
+                var employee = lstEmployees.SelectedItem as Employee;
 
                 grdProducts.ItemsSource = db.OrderDetails
                     .Include(x => x.Product)
@@ -79,5 +69,47 @@ namespace WPFNorthwindDB;
                 .Where(x => x.CompanyName.StartsWith(txtFilter.Text))
                 .OrderBy(x => x.CompanyName)
                 .ToList();
+        }
+
+        private void BtnShowCustomer_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (lstEmployees.SelectedIndex != -1)
+            {
+                var employee = lstEmployees.SelectedItem as Employee;
+                
+                lblSelectedEmployeeFirstName.Content = employee.FirstName;
+                lblSelectedEmployeeLastName.Content = employee.LastName;
+
+                lstCustomers.ItemsSource = db.Orders
+                    .Include(x => x.Employee)
+                    .Include(x => x.Customer)
+                    .Where(x => x.Employee == employee)
+                    .Select(x => x.Customer)
+                    .Distinct()
+                    .ToList();
+            }
+        }
+
+        private void GrdProducts_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            if (grdProducts.SelectedIndex != -1)
+            {
+                var grdProductsSelectedItem = grdProducts.SelectedItem as Product;
+                txtProductName.Text = grdProductsSelectedItem.ProductName;
+                txtProductName.IsEnabled = false;
+                txtNewPrice.Text = grdProductsSelectedItem.UnitPrice.ToString();
+            }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (grdProducts.SelectedIndex != -1)
+            {
+                var grdProductsSelectedItem = grdProducts.SelectedItem as Product;
+
+                grdProductsSelectedItem.UnitPrice =  Decimal.Parse(txtNewPrice.Text);
+
+                db.SaveChanges();
+            }
         }
 }

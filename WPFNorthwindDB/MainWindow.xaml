@@ -31,7 +31,7 @@
     <Label Content="Employees" Margin="293,0,0,0" />
     <ListBox Name="listBox" SelectionChanged="ListBox_OnSelectionChanged" HorizontalAlignment="Left" Height="330" Margin="10,26,0,0" VerticalAlignment="Top" Width="264" />
     <ListBox Name="lstEmployees" SelectionChanged="ListBox_OnSelectionChanged" HorizontalAlignment="Left" Height="185" Margin="293,26,0,0" VerticalAlignment="Top" Width="164" />
-    <DataGrid Name="grdProducts" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="474,10,0,0" VerticalAlignment="Top" Height="399" Width="483">
+    <DataGrid Name="grdProducts" SelectedCellsChanged="GrdProducts_OnSelectedCellsChanged" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="474,10,0,0" VerticalAlignment="Top" Height="399" Width="483">
       <DataGrid.Columns>
         <DataGridTextColumn Binding="{Binding ProductName}" Header="ProductName" />
         <DataGridTextColumn Binding="{Binding UnitPrice}" Header="Price" />
@@ -48,7 +48,7 @@
     <Label Name="lblMaxPrice" Margin="360,348,0,0" Width="44"/>
     <Slider Name="sldMinStock" ValueChanged="Slides_OnValueChanged" Margin="293,306,0,0" Maximum="100" />
     <Label Name="lblMinStock" Margin="360,275,0,0" Width="44"/>
-    <Button Content="Show Customers" HorizontalAlignment="Left" Margin="10,423,0,0" VerticalAlignment="Top" Width="118" />
+    <Button Content="Show Customers" Click="BtnShowCustomer_OnClick" HorizontalAlignment="Left" Margin="10,423,0,0" VerticalAlignment="Top" Width="118" />
     <ListBox Name="lstCustomers" HorizontalAlignment="Left" Height="219" Margin="174,423,0,0" VerticalAlignment="Top" Width="354" />
     <Label Name="lblSelectedEmployeeLastName" Content="LastName SelectedEmployee" Margin="10,453,0,0" Width="118"/>
     <Label Name="lblSelectedEmployeeFirstName" Content="FirstName SelectedEmployee" Margin="10,483,0,0" Width="118"/>
@@ -56,6 +56,6 @@
     <Label Content="New Price" Margin="574,453,0,0" />
     <TextBox Name="txtProductName" Margin="676,428,0,0" />
     <TextBox Name="txtNewPrice" Margin="676,457,0,0" />
-    <Button Content="Update" HorizontalAlignment="Left" Margin="819,431,0,0" VerticalAlignment="Top" Width="56" Height="47" />
+    <Button Content="Update" Click="ButtonBase_OnClick" HorizontalAlignment="Left" Margin="819,431,0,0" VerticalAlignment="Top" Width="56" Height="47" />
   </Grid>
 </Window>
