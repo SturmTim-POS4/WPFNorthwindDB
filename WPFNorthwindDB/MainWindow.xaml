@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFNorthwindDB"
         mc:Ignorable="d"
         Loaded="MainWindow_OnLoaded"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="900">
   <Grid>
     <Grid.Resources>
       <Style TargetType="TextBox">
@@ -56,6 +56,13 @@
     <Label Content="New Price" Margin="574,453,0,0" />
     <TextBox Name="txtProductName" Margin="676,428,0,0" />
     <TextBox Name="txtNewPrice" Margin="676,457,0,0" />
-    <Button Content="Update" Click="ButtonBase_OnClick" HorizontalAlignment="Left" Margin="819,431,0,0" VerticalAlignment="Top" Width="56" Height="47" />
+    <Button Content="Update" Click="btnUpdate_OnClick" HorizontalAlignment="Left" Margin="819,431,0,0" VerticalAlignment="Top" Width="56" Height="47" />
+    <Button Content="Add" Click="btnAdd_OnClick" HorizontalAlignment="Left" Margin="819,531,0,0" VerticalAlignment="Top" Width="56" Height="77"></Button>
+    <Label Content="Productname" Margin="574,525,0,0" />
+    <Label Content="Supplier" Margin="574,553,0,0" />
+    <Label Content="Catagory" Margin="574,581,0,0" />
+    <TextBox Name="txtNewProductName" Margin="676,528,0,0" />
+    <TextBox Name="txtSupplier" Margin="676,557,0,0"/>
+    <TextBox Name="txtCatagory" Margin="676,585,0,0"/>
   </Grid>
 </Window>

@@ -101,13 +101,36 @@ namespace WPFNorthwindDB;
             }
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void btnUpdate_OnClick(object sender, RoutedEventArgs e)
         {
             if (grdProducts.SelectedIndex != -1)
             {
                 var grdProductsSelectedItem = grdProducts.SelectedItem as Product;
 
                 grdProductsSelectedItem.UnitPrice =  Decimal.Parse(txtNewPrice.Text);
+
+                db.SaveChanges();
+            }
+        }
+
+        private void btnAdd_OnClick(object sender, RoutedEventArgs e)
+        {
+            var productName = txtNewProductName.Text;
+            var supplier = db.Suppliers.Single(x => x.CompanyName == txtSupplier.Text);
+            var catagory = db.Categories.Single(x => x.CategoryName == txtCatagory.Text);
+
+            if (catagory != null && supplier != null)
+            {
+                var product = new Product()
+                {
+                    ProductName = productName,
+                    SupplierId = supplier.SupplierId,
+                    Supplier = supplier,
+                    CategoryId = catagory.CategoryId,
+                    Category = catagory
+                };
+
+                db.Products.Add(product);
 
                 db.SaveChanges();
             }
